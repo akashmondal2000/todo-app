@@ -56,19 +56,19 @@ function App() {
 
       {list.length > 0
         ? list.map((item) => (
-            <div key={item.id}>
-              <p id="todos" >
+            <div className="todoList" key={item.id}>
+              <p className="listStyle">
                 {item.title}
               </p>
 
-              <button type="button" onClick={() => deleteTodo(item.id)}>Delete</button>
+              <button className="listStyle" type="button" onClick={() => deleteTodo(item.id)}>Delete</button>
 
-              <input type="checkbox" value ={item.isCheked} onChange = {()=>{ 
+              <input className="listStyle" type="checkbox" value ={item.isCheked} onChange = {()=>{ 
               console.log(item.title, " : check status > ", !item.isCheked);
               setList(
               list.map(i=> i.id === item.id ? {...i, isCheked: !i.isCheked} : i  )
               )}
-              } />
+              }/> 
                   
             </div>
           ))

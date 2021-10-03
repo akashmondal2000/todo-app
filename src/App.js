@@ -1,6 +1,3 @@
-// import logo from './logo.svg';
-// import './App.css';
-//import React from "react";
 
 import React, { useState } from "react";
 
@@ -18,6 +15,7 @@ function App() {
       id: newDate,
       title: input,
       isCheked: false,
+      isEdit:false,
     };
 
     setList([...list, obj]);
@@ -31,6 +29,8 @@ function App() {
     setList(newList);
     //console.log(id);
   };
+
+  const editTodo = ()=>{}
 
   // // Chake Box
   // const chakeTodo = ()=>{
@@ -58,6 +58,15 @@ function App() {
         ? list.map((item) => (
             <div className="todoList" key={item.id}>
 
+            {item.isEdit? 
+            <>
+            <input  />
+            <button>save
+            </button>
+            </>
+            :
+            
+            <>
             <input className="listStyle" type="checkbox" value ={item.isCheked} onChange = {()=>{ 
               console.log(item.title, " : check status > ", !item.isCheked);
               setList(
@@ -71,13 +80,19 @@ function App() {
 
               <button className="listStyle" type="button" onClick={() => deleteTodo(item.id)}>Delete</button>
 
+              <button type="button" onClick = {()=>{
 
-                  
+                setList(
+                  list.map(ed=> ed.id === item.id ? {...ed,isEdit : !ed.isEdit} : ed)
+                )
+              }}>Edit</button>
+            </>
+            }
             </div>
           ))
         : null}
     </div>
-    // </div>
+   
   );
 }
 

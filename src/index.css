@@ -4,6 +4,10 @@
     
 }
 
+#heading{
+    margin-top: 50px;
+}
+
 .container{
     
     position: fixed;
@@ -66,11 +70,12 @@
 .todoList{
     height: 32px;
     width: 20%;
-    background-color: #f04075;
+    background-color: #f9e4eb;
     border-radius: 8px;
     margin: auto;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     margin-top: 10px;
     padding-left: 10px;
     padding-right: 10px;
@@ -81,14 +86,52 @@
     margin: auto;
     justify-content: space-between;
     padding: 4px;
+    color: red;
 }
 
 
-#todoText{
+.todoText{
+    margin: 0 5px;
+    max-width: 55%;
     text-align: center;
     justify-content: space-between;
     padding: 4px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.lineThrough{
+    text-decoration: line-through;
+    text-decoration-style: solid;
+}
+
+.editBox{
+    width: 240px;
+    height: 32px;
+    border: 1.5px solid black;
+    border-radius: 8px;
+    background-color: whitesmoke;
+    text-align: center;
+
+}
+.editIcon{
+    text-align: center;
+    margin: auto;
+    justify-content: space-between;
+    padding: 4px;
+    color: blue;
+
+}
+.saveIcon{
+    text-align: center;
+    margin: auto;
+    justify-content: space-between;
+    padding: 4px;
+    color: rgb(65, 189, 92);
+
+}
+
+.switch{
+    margin-top: 5px;
 }

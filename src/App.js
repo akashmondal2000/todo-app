@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { Icon } from "@iconify/react";
+import Switch from "react-switch";
 
 function App() {
   const [input, setInput] = useState("");
@@ -35,7 +37,7 @@ function App() {
         i.id === todo.id ? { ...i, title: editinput, isEdit: !i.isEdit } : i
       )
     );
-    setEditinput("")
+    setEditinput("");
   };
 
   // // Chake Box
@@ -45,7 +47,7 @@ function App() {
   return (
     // <div className="App">
     <div className="container">
-      <h1>Todo App</h1>
+      <h1 id="heading">Todo App</h1>
 
       <input
         className="searchBox"
@@ -67,22 +69,26 @@ function App() {
               {item.isEdit ? (
                 <>
                   <input
+                    className="editBox"
                     type="text"
                     value={editinput}
                     onChange={(e) => setEditinput(e.target.value)}
                     placeholder="Edit"
                   />
 
-                  <button type="button" onClick={() => editTodo(item)}>
-                    save
-                  </button>
+                  <span
+                    className="saveIcon"
+                    type="button"
+                    onClick={() => editTodo(item)}
+                  >
+                    {/* saveIcon */}
+                    <Icon icon="fluent:save-arrow-right-20-regular" />
+                  </span>
                 </>
               ) : (
                 <>
-                  <input
-                    className="listStyle"
-                    type="checkbox"
-                    value={item.isCheked}
+                  <Switch
+                  // className="switch"
                     onChange={() => {
                       console.log(
                         item.title,
@@ -95,19 +101,32 @@ function App() {
                         )
                       );
                     }}
+                    checked={item.isCheked}
+                    height={20}
+                    onColor={"#03ca1a"}
+                    offColor={"#fb2a2a"}
+                    // uncheckedHandleIcon={<>😊</>}
+                    // checkedHandleIcon={<>🤣</>}
                   />
 
-                  <p id="todoText">{item.title}</p>
+                  <p
+                    className={`${
+                      item.isCheked === true ? "lineThrough" : ""
+                    } todoText`}
+                  >
+                    {item.title}
+                  </p>
 
-                  <button
+                  <div className="icons">
+                  <span
                     className="listStyle"
-                    type="button"
                     onClick={() => deleteTodo(item.id)}
                   >
-                    Delete
-                  </button>
+                    <Icon icon="fluent:delete-24-filled" />
+                  </span>
 
-                  <button
+                  <span
+                    className="editIcon"
                     type="button"
                     onClick={() => {
                       setEditinput(item.title);
@@ -119,8 +138,10 @@ function App() {
                       );
                     }}
                   >
-                    Edit
-                  </button>
+                    {/* edit icon */}
+                    <Icon icon="bx:bx-edit-alt" />
+                  </span>
+                  </div>
                 </>
               )}
             </div>

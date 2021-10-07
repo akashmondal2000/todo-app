@@ -1,11 +1,55 @@
 import React, { useState } from "react";
 import { Icon } from "@iconify/react";
 import Switch from "react-switch";
+import { DateTimePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
+import DateFnsUtils from "@date-io/date-fns";
+
 
 function App() {
   const [input, setInput] = useState("");
   const [list, setList] = useState([]);
   const [editinput, setEditinput] = useState("");
+  const [dateTime, setDateTime] = useState(new Date());
+
+  function formatDate(dateVal) {
+    var newDate = new Date(dateVal);
+
+    var sMonth = padValue(newDate.getMonth() + 1);
+    var sDay = padValue(newDate.getDate());
+    var sYear = newDate.getFullYear();
+    var sHour = newDate.getHours();
+    var sMinute = padValue(newDate.getMinutes());
+    var sAMPM = "AM";
+
+    var iHourCheck = parseInt(sHour);
+
+    if (iHourCheck > 12) {
+      sAMPM = "PM";
+      sHour = iHourCheck - 12;
+    } else if (iHourCheck === 0) {
+      sHour = "12";
+    }
+
+    sHour = padValue(sHour);
+
+    return (
+      sMonth +
+      "-" +
+      sDay +
+      "-" +
+      sYear +
+      " " +
+      sHour +
+      ":" +
+      sMinute +
+      " " +
+      sAMPM
+    );
+  }
+
+  function padValue(value) {
+    return value < 10 ? "0" + value : value;
+  }
 
   let addTodo = () => {
     const d = new Date(); // take a date
@@ -17,10 +61,12 @@ function App() {
       title: input,
       isCheked: false,
       isEdit: false,
+      selectedDate: dateTime,
     };
 
     setList([...list, obj]);
     setInput("");
+    setDateTime(new Date());
   };
 
   // Delete todo function
@@ -49,6 +95,8 @@ function App() {
     <div className="container">
       <h1 id="heading">Todo App</h1>
 
+      <div className = "TodoInputContainer">
+
       <input
         className="searchBox"
         type="text"
@@ -56,12 +104,25 @@ function App() {
         onChange={(inputChange) => setInput(inputChange.target.value)}
         placeholder="Add some task"
       />
-      <br />
 
-      <button id="addButton" onClick={addTodo}>
+      <div className="datePicker">
+        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+          <DateTimePicker
+            label="DateTimePicker"
+            inputVariant="outlined"
+            value={dateTime}
+            onChange={setDateTime}
+          />
+        </MuiPickersUtilsProvider>
+      </div>
+
+      </div>
+      <br />
+      {/* AddButton */}
+      <div className = "addIcon" onClick={addTodo}>
         {" "}
-        Add
-      </button>
+        <Icon icon="system-uicons:button-add" />
+      </div>
 
       {list.length > 0
         ? list.map((item) => (
@@ -88,7 +149,7 @@ function App() {
               ) : (
                 <>
                   <Switch
-                  // className="switch"
+                    // className="switch"
                     onChange={() => {
                       console.log(
                         item.title,
@@ -109,38 +170,43 @@ function App() {
                     // checkedHandleIcon={<>🤣</>}
                   />
 
-                  <p
-                    className={`${
-                      item.isCheked === true ? "lineThrough" : ""
-                    } todoText`}
-                  >
-                    {item.title}
-                  </p>
+                  <div className = "todoAndTime">
+                    <p
+                      className={`${
+                        item.isCheked === true ? "lineThrough" : ""
+                      } todoText`} >
+                    
+                      {item.title}
+                    </p>
+                    <p className = "DateAndTimeStyle">{formatDate(item.selectedDate)}</p>
+                  </div>
 
                   <div className="icons">
-                  <span
-                    className="listStyle"
-                    onClick={() => deleteTodo(item.id)}
-                  >
-                    <Icon icon="fluent:delete-24-filled" />
-                  </span>
+                    <span
+                      className="listStyle"
+                      onClick={() => deleteTodo(item.id)}
+                    >
+                      <Icon icon="fluent:delete-24-filled" />
+                    </span>
 
-                  <span
-                    className="editIcon"
-                    type="button"
-                    onClick={() => {
-                      setEditinput(item.title);
+                    <span
+                      className="editIcon"
+                      type="button"
+                      onClick={() => {
+                        setEditinput(item.title);
 
-                      setList(
-                        list.map((ed) =>
-                          ed.id === item.id ? { ...ed, isEdit: !ed.isEdit } : ed
-                        )
-                      );
-                    }}
-                  >
-                    {/* edit icon */}
-                    <Icon icon="bx:bx-edit-alt" />
-                  </span>
+                        setList(
+                          list.map((ed) =>
+                            ed.id === item.id
+                              ? { ...ed, isEdit: !ed.isEdit }
+                              : ed
+                          )
+                        );
+                      }}
+                    >
+                      {/* edit icon */}
+                      <Icon icon="bx:bx-edit-alt" />
+                    </span>
                   </div>
                 </>
               )}

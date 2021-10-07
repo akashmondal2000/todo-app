@@ -45,38 +45,48 @@
 }
 
 .searchBox{
-    width: 36%;
-    height: 16px;
-    border: 1.5px solid black;
+    width: 50%;
+    height: 46px;
+    border: 1.5px solid #cbcbcb;
     border-radius: 8px;
-    background-color: whitesmoke;
-    margin-top: 24px;
+    background-color: white;
+    margin-right: 30px;
     padding: 5px;
     text-align: center;
 }
 
-#addButton{
-    background-color: #87d412;
-    color: white;
-    margin-top: 10px;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    font-size: 20px;
-    border-radius: 4px;
+.addIcon{
+    font-size: 60px;
+    cursor: pointer;
+    min-height: 80PX;
+    width: fit-content;
+    margin: auto;
+    
+}
+.addIcon>svg{
+    transition: all 0.3s 0s ease;
+}
+.addIcon>svg:hover{
+    font-size: 62px;
+    box-shadow: 4px 7px 19px -6px rgba(0,0,0,0.57);
+-webkit-box-shadow: 4px 7px 19px -6px rgba(0,0,0,0.57);
+-moz-box-shadow: 4px 7px 19px -6px rgba(0,0,0,0.57);
+border-radius: 10px;
 }
 
 
 
 
 .todoList{
-    height: 32px;
-    width: 20%;
+    height: 58px;
+    width: 25%;
     background-color: #f9e4eb;
     border-radius: 8px;
     margin: auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 10px;
+    margin-top: 5px;
     padding-left: 10px;
     padding-right: 10px;
 }
@@ -91,9 +101,10 @@
 
 
 .todoText{
-    margin: 0 5px;
+    /* margin: 0 5px; */
     max-width: 55%;
-    text-align: center;
+    text-align: left;
+    font-size: 20px;
     justify-content: space-between;
     padding: 4px;
     white-space: nowrap;
@@ -134,4 +145,29 @@
 
 .switch{
     margin-top: 5px;
+}
+
+.todoAndTime{
+    padding-left: 20px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    flex: 1;
+}
+
+.DateAndTimeStyle{
+    font-size: 12px;
+    text-align: right;
+    padding-right: 15px;
+
+}
+
+.TodoInputContainer{
+    width: 25%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    margin-top: 30px;
 }

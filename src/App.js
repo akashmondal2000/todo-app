@@ -10,6 +10,7 @@ function App() {
   const [list, setList] = useState([]);
   const [editinput, setEditinput] = useState("");
   const [dateTime, setDateTime] = useState(new Date());
+  const [editDate,setEditDate] = useState (new Date());
 
   function formatDate(dateVal) {
     var newDate = new Date(dateVal);
@@ -62,6 +63,7 @@ function App() {
       isCheked: false,
       isEdit: false,
       selectedDate: dateTime,
+      
     };
 
     setList([...list, obj]);
@@ -77,10 +79,13 @@ function App() {
     //console.log(id);
   };
 
+
+
+  //Edit todo item 
   const editTodo = (todo) => {
     setList(
       list.map((i) =>
-        i.id === todo.id ? { ...i, title: editinput, isEdit: !i.isEdit } : i
+        i.id === todo.id ? { ...i, title: editinput,selectedDate:editDate, isEdit: !i.isEdit } : i
       )
     );
     setEditinput("");
@@ -136,6 +141,17 @@ function App() {
                     onChange={(e) => setEditinput(e.target.value)}
                     placeholder="Edit"
                   />
+
+                    <div className="editDatePicker">
+                            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                              <DateTimePicker
+                                label="DateTimePicker"
+                                inputVariant="outlined"
+                                value={editDate}
+                                onChange={setEditDate}
+                              />
+                            </MuiPickersUtilsProvider>
+                          </div>
 
                   <span
                     className="saveIcon"
@@ -194,6 +210,7 @@ function App() {
                       type="button"
                       onClick={() => {
                         setEditinput(item.title);
+                        setEditDate(item.selectedDate);
 
                         setList(
                           list.map((ed) =>

@@ -12,9 +12,7 @@ function App() {
   const [editDate, setEditDate] = useState(new Date());
 
   let addTodo = () => {
-    const d = new Date(); // take a date
-    const newDate = String(d); // convart date to string
-    console.log(newDate);
+    const newDate = String(new Date()); // convart date to string
 
     const obj = {
       id: newDate,
@@ -54,44 +52,35 @@ function App() {
     setEditinput("");
   };
 
-  // // Chake Box
-  // const chakeTodo = ()=>{
-  // }
-
   return (
-    // <div className="App">
     <div className="container">
       <h1 id="heading">Todo App</h1>
 
-      <TodoInput 
-      input={input}
-      setInput={setInput}
-      DatePicker={DatePicker}
-      dateTime={dateTime}
-      setDateTime={setDateTime}
+      <TodoInput
+        input={input}
+        setInput={setInput}
+        DatePicker={DatePicker}
+        dateTime={dateTime}
+        setDateTime={setDateTime}
       />
 
-
-
-
       <br />
-      {/* AddButton */}
+      {/* Add todo button */}
       <div className="addIcon" onClick={addTodo}>
         {" "}
         <Icon icon="system-uicons:button-add" />
       </div>
 
+      {/* todos section */}
       <Todos
-      
-      list={list} 
-      editinput={editinput} 
-      setEditinput = {setEditinput}
-      editDate = {editDate}
-      setEditDate = {setEditDate}
-      editTodo = {editTodo}
-      setList = {setList}
-      deleteTodo = {deleteTodo}
-
+        list={list}
+        editinput={editinput}
+        setEditinput={setEditinput}
+        editDate={editDate}
+        setEditDate={setEditDate}
+        editTodo={editTodo}
+        setList={setList}
+        deleteTodo={deleteTodo}
       />
     </div>
   );

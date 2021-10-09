@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { Icon } from "@iconify/react";
 import Switch from "react-switch";
-import { DateTimePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
-import DateFnsUtils from "@date-io/date-fns";
+import DatePicker from "./components/datePicker";
 
 
 function App() {
@@ -111,14 +110,7 @@ function App() {
       />
 
       <div className="datePicker">
-        <MuiPickersUtilsProvider utils={DateFnsUtils}>
-          <DateTimePicker
-            label="DateTimePicker"
-            inputVariant="outlined"
-            value={dateTime}
-            onChange={setDateTime}
-          />
-        </MuiPickersUtilsProvider>
+        <DatePicker getter={dateTime} setter={setDateTime}/>
       </div>
 
       </div>
@@ -143,14 +135,8 @@ function App() {
                   />
 
                     <div className="editDatePicker">
-                            <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                              <DateTimePicker
-                                label="DateTimePicker"
-                                inputVariant="outlined"
-                                value={editDate}
-                                onChange={setEditDate}
-                              />
-                            </MuiPickersUtilsProvider>
+                    <DatePicker getter ={editDate} setter = {setEditDate}/>
+
                           </div>
 
                   <span

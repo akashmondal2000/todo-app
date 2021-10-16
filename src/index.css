@@ -94,6 +94,7 @@ border-radius: 10px;
 .listStyle{
     text-align: center;
     margin: auto;
+    cursor: pointer;
     justify-content: space-between;
     padding: 4px;
     color: red;
@@ -129,6 +130,7 @@ border-radius: 10px;
 .editIcon{
     text-align: center;
     margin: auto;
+    cursor: pointer;
     justify-content: space-between;
     padding: 4px;
     color: blue;
@@ -137,6 +139,7 @@ border-radius: 10px;
 .saveIcon{
     text-align: center;
     margin: auto;
+    cursor: pointer;
     justify-content: space-between;
     padding: 4px;
     color: rgb(65, 189, 92);
